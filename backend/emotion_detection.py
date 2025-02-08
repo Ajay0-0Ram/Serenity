@@ -12,6 +12,9 @@ import os
 
 # Initialize FastAPI
 app = FastAPI()
+@app.get("/")
+def home():
+    return {"message": "Emotion Detection API is running. Use /docs to test endpoints."}
 
 # Allow frontend (React) to communicate with this backend
 app.add_middleware(
