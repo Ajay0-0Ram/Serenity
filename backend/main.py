@@ -1,6 +1,5 @@
 from fastapi import FastAPI, File, UploadFile, Response
 from fastapi.middleware.cors import CORSMiddleware
-from transformers import pipeline
 import sqlite3
 import uvicorn
 import os
