@@ -15,7 +15,7 @@ const TextAnalyzer = () => {
             });
 
             const data = await response.json();
-            console.log("📌 API Response in React:", data); // Debugging output
+            console.log("API Response in React:", data); // Debugging output
 
             if (data && data.emotion) {
                 setEmotion({
@@ -23,12 +23,12 @@ const TextAnalyzer = () => {
                     confidence: data.confidence !== undefined ? data.confidence : null
                 });
             } else {
-                console.error("🚨 Error: Invalid response format", data);
+                console.error("Error: Invalid response format", data);
                 setEmotion({ emotion: "Error", confidence: null });
             }
 
         } catch (error) {
-            console.error("🚨 Error analyzing text:", error);
+            console.error("Error analyzing text:", error);
         }
     };
 
@@ -56,4 +56,4 @@ const TextAnalyzer = () => {
     );
 };
 
-export default TextAnalyzer;  // ✅ Make sure this is a default export
+export default TextAnalyzer;  // Make sure this is a default export

@@ -59,7 +59,7 @@ class TextInput(BaseModel):
 @app.post("/analyze_text/")
 async def analyze_text(input_data: TextInput):
     results = nlp_pipe(input_data.text)  # Pass only the text input
-    print("📌 NLP API Response:", results)  # Debugging output
+    print("NLP API Response:", results)  # Debugging output
 
     if len(results) > 0:
         return {
