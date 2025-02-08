@@ -9,6 +9,7 @@ import io
 import sqlite3
 import uvicorn
 import os
+from pydantic import BaseModel  
 
 # Initialize FastAPI
 app = FastAPI()
@@ -30,7 +31,6 @@ emotion_pipe = pipeline("image-classification", model="dima806/facial_emotions_i
 
 # OAuth2 for authentication (to be implemented later)
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
 # Database setup
 DB_PATH = "emotions.db"
 if not os.path.exists(DB_PATH):
@@ -46,6 +46,28 @@ if not os.path.exists(DB_PATH):
     """)
     conn.commit()
     conn.close()
+
+
+
+# Load NLP model (GoEmotions detects emotions in text)
+nlp_pipe = pipeline("sentiment-analysis")
+
+# Define the request model
+class TextInput(BaseModel):
+    text: str
+
+@app.post("/analyze_text/")
+async def analyze_text(input_data: TextInput):
+    results = nlp_pipe(input_data.text)  # Pass only the text input
+    print("📌 NLP API Response:", results)  # Debugging output
+
+    if len(results) > 0:
+        return {
+            "emotion": results[0].get("label", "Unknown"),
+            "confidence": results[0].get("score", None)
+        }
+
+    return {"emotion": "Unknown", "confidence": None}
 
 @app.post("/detect_emotion/")
 async def detect_emotion(file: UploadFile = File(...)):
