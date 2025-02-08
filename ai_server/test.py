@@ -1,19 +1,52 @@
 from transformers import pipeline
-from flask import Flask, request, jsonify
+import cv2
+from PIL import Image
 
-app = Flask(__name__)
+# initialize the emotion detection pipeline
+pipe = pipeline("image-classification", model="dima806/facial_emotions_image_detection")
 
-# Load Hugging Face model
-emotion_pipeline = pipeline("image-classification", model="dima806/facial_emotions_image_detection")
+# initialize the webcam
+cap = cv2.VideoCapture(0)
 
-@app.route('/detect_emotion', methods=['POST'])
-def detect_emotion():
-    image_url = request.json.get('image_url')
-    if not image_url:
-        return jsonify({"error": "No image URL provided"}), 400
-    
-    result = emotion_pipeline(image_url)
-    return jsonify(result)
+if not cap.isOpened():
+    print("Error: Could not open webcam.")
+    exit()
 
-if __name__ == '__main__':
-    app.run(port=5001)
+# capture an image from the webcam
+print("Press 's' to take a picture and detect emotion, or 'q' to quit.")
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        print("Error: Failed to capture image.")
+        break
+
+    # display the webcam feed
+    cv2.imshow("Webcam", frame)
+
+    # wait for key press
+    key = cv2.waitKey(1) & 0xFF
+    if key == ord('s'):  # press 's' to take a picture
+        # convert the captured frame to a PIL image
+        image = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
+
+        # use the pipeline to detect emotions
+        results = pipe(image)
+
+        # get the top predicted emotion
+        predicted_emotion = results[0]['label']
+        confidence = results[0]['score']
+
+        # display the predicted emotion
+        print(f"Detected Emotion: {predicted_emotion} (Confidence: {confidence:.2f})")
+
+        # show the detected emotion on the image
+        cv2.putText(frame, f"Emotion: {predicted_emotion}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        cv2.imshow("Detected Emotion", frame)
+        cv2.waitKey(2000)  # display the result for 2 seconds
+
+    elif key == ord('q'):  # press 'q' to quit
+        break
+
+# release the webcam and close all OpenCV windows
+cap.release()
+cv2.destroyAllWindows()
