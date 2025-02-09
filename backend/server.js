@@ -37,6 +37,24 @@ app.post("/detect_emotion", upload.single("file"), async (req, res) => {
     }
 });
 
+app.post("/analyze_text", async (req, res) => {
+    try {
+        const { text } = req.body;
+
+        if (!text) {
+            return res.status(400).json({ error: "No text provided" });
+        }
+
+        // Forward text to FastAPI for NLP analysis
+        const response = await axios.post("http://127.0.0.1:8000/analyze_text/", { text });
+
+        res.json(response.data); // Send analysis result back to React
+    } catch (error) {
+        console.error("🚨 Error in NLP Text Analysis:", error);
+        res.status(500).json({ error: "Failed to analyze text" });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Node.js server running at http://localhost:${PORT}`);
 });

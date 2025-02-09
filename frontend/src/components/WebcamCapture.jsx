@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import Webcam from "react-webcam";
 
+
 const WebcamCapture = () => {
   const webcamRef = useRef(null);
   const [isWebcamOn, setIsWebcamOn] = useState(true);
