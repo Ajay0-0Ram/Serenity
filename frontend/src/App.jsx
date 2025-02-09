@@ -1,17 +1,17 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AppCheckIn from "./AppCheckIn";
 import AppFeedback from "./AppFeedback";
 
 function App() {
     return (
-        <BrowserRouter>
+        <Router>
+            <h1>HELLO</h1>
             <Routes>
                 <Route path="/" element={<AppCheckIn />} />
                 <Route path="/feedback" element={<AppFeedback />} />
-                <Route path="*" element={<h1>Page Not Found</h1>} />
             </Routes>
-        </BrowserRouter>
+        </Router>
     );
 }
 
