@@ -1,20 +1,21 @@
-import React from "react";
-import WebcamCapture from "./components/WebcamCapture";
-import { TextAnalyzer } from "./components/TextAnalyzer";
-import EventLogger from "./components/EventLogger";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import LoginPage from "./Pages/LoginPage";
+import SignupPage from "./Pages/SignupPage";
+import WelcomePage from "./Pages/WelcomePage";
+import CheckinPage from "./Pages/CheckinPage";
 
-const App: React.FC = () => {
-  // Assuming you have a way to determine the emotion, for example, from WebcamCapture or TextAnalyzer
-  const emotion = ""; // Replace this with the actual emotion value
-
+function App() {
   return (
-    <div className="App">
-      <h1>Emotion Detection</h1>
-      <WebcamCapture />
-      <TextAnalyzer />
-      <EventLogger emotion={emotion} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/LoginPage" element={<LoginPage />} />
+        <Route path="/SignupPage" element={<SignupPage />} />
+        <Route path="/CheckinPage" element={<CheckinPage />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;

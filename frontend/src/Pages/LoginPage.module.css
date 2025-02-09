@@ -1,0 +1,224 @@
+/* .loginContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+       
+}
+.loginBox h1{
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #ededed;
+    font-weight:bold;
+    font-family: "Alex Brush", cursive;
+    background-color:#ededed;
+    color:black;
+    text-align: center;
+
+}
+.backgroundImage{
+    background-image: url("../assets/blurrystarryPic.jpg");
+    background-size: cover;
+    background-position:center ;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+
+.loginBox{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90vw;
+    padding: 20px;
+    background-color: #ededed;
+    border-radius: 10px;
+    box-shadow: 0 0 40px #ededed;
+    
+}
+.loginBox input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+
+}
+
+.loginBox button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 5px 10px black;
+
+}
+.loginBox button:hover{
+    background-color: rgba(16, 16, 16, 0.778);
+}
+.loginBox input:hover{
+    color: black;
+    border: 3px black  !important;
+}
+
+.signupbox{
+    display:inline-block;
+
+}
+.signupBox h4{
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #ededed;
+}
+.signupBox a{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #ededed;
+}
+
+@media (min-width:800px){
+    .loginBox h1{
+        font-size:3.5rem;
+    }
+    .loginBox{
+        width:60vw;
+    }
+    
+} */
+
+
+
+
+
+
+
+ 
+.loginContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+       
+}
+.loginBox h1{
+    font-size: 3rem;
+    margin: 20px 0;
+    color: #ededed;
+    font-weight:bold;
+    font-family: "Alex Brush", cursive;
+    background-color:#ededed;
+    color:black;
+    text-align: center;
+    width: 100%;
+
+}
+
+.backgroundImage{
+    background-image: url("../assets/blurrystarryPic.jpg");
+    background-size: cover;
+    background-position:center ;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-width:100vw;
+    overflow: hidden;    
+}
+
+.loginBox{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90vw;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #ededed;
+    border-radius: 10px;
+    box-shadow: 0 0 40px #ededed;
+    
+}
+.loginBox input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+
+}
+
+.loginBox button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    width:100%;
+    background-color: black;
+    color: white;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 10px black;
+    cursor: pointer;
+}
+
+.loginBox input:hover{
+    color: black;
+    border: 3px black  !important;
+}
+
+.signupBox{
+    display:inline-block;
+
+}
+.signupBox h4{
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #ededed;
+}
+.signupBox a{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #ededed;
+}
+
+.loginBox button:hover{
+    background-color: rgba(16, 16, 16, 0.778);
+}
+
+/* FADE IN ANIMATION */
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px); /* Optional: Small movement */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+  
+  .fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+
+@media (min-width:800px){
+    .loginBox h1{
+        font-size:3.5rem;
+    }
+    .loginBox{
+        width:70vw;
+    }
+    
+}
+

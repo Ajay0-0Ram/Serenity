@@ -1,0 +1,21 @@
+.checkinContainer{
+    color:white;
+    padding:2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-image: url("../assets/starryPic2.jpg");
+    background-size: cover;
+}
+.checkinContainer h1{
+    font-size: 3rem;
+    color: white;
+    font-weight:bold;
+    font-family: "Alex Brush", cursive;
+    text-align: center;
+}
+.checkinWebcam{
+    display:flex;
+    margin-top:1%;
+}

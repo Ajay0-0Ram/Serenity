@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
+import styles from "./WebcamCapture.module.css"; // Importing CSS Modules
 
 interface EmotionResponse {
   emotion: string;
@@ -58,7 +59,8 @@ const WebcamCapture: React.FC = () => {
 
       setEmotion({
         emotion: data.emotion || "Unknown",
-        confidence: data.confidence !== undefined ? data.confidence.toFixed(2) : "N/A",
+        confidence:
+          data.confidence !== undefined ? data.confidence.toFixed(2) : "N/A",
       });
     } catch (error) {
       console.error("Error detecting emotion:", error);
@@ -86,39 +88,39 @@ const WebcamCapture: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4">
+    <div className={styles.containerWebcam}>
       {webcamActive && (
         <Webcam
           ref={webcamRef}
           screenshotFormat="image/jpeg"
           onUserMedia={() => setWebcamReady(true)}
-          className="rounded-lg shadow-lg"
+          className={styles.webcamBox}
         />
       )}
 
-      <div className="flex gap-2">
+      <div className="d-flex gap-2">
         <button
           onClick={capture}
           disabled={loading || !webcamReady || !webcamActive}
-          className="bg-blue-500 text-white p-2 rounded"
+          className={styles.btnPrimaryCustom}
         >
           {loading ? "Detecting..." : "Capture & Detect Emotion"}
         </button>
 
         <button
           onClick={toggleWebcam}
-          className={`p-2 rounded ${
-            webcamActive ? "bg-red-500" : "bg-green-500"
-          } text-white`}
+          className={`${
+            webcamActive ? styles.btnDangerCustom : styles.btnSuccessCustom
+          }`}
         >
           {webcamActive ? "Turn Off Webcam" : "Turn On Webcam"}
         </button>
       </div>
 
       {emotion && (
-        <div className="text-center p-4 bg-gray-100 rounded-lg">
-          <h2 className="text-xl font-bold">Detected Emotion:</h2>
-          <p className="text-lg">
+        <div className={styles.emotionBox}>
+          <h2 className="h4">Detected Emotion:</h2>
+          <p className="h5">
             {emotion.emotion} (Confidence: {emotion.confidence})
           </p>
         </div>

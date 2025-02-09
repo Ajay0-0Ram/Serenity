@@ -1,0 +1,130 @@
+
+.header {
+    background-color: transparent;
+    display: flex;
+    justify-content: center; 
+	flex-direction:column;
+    text-align:center;
+	width:100%;
+	margin-right:50px;
+}
+
+
+
+.header h1 {
+    color: white;
+    font-family: 'Alex Brush', cursive;
+    text-align: center;
+    justify-content: center; 
+    font-weight:bold;
+    font-size:5rem;
+    font-weight:bold;
+    text-align: center;
+    padding:10%;
+    padding-top:75px;
+
+
+}
+
+@media (min-width: 800px){
+    .header h1 {
+        font-size: 7rem;
+    }
+	.header h1 {
+		color: white;
+		font-family: 'Alex Brush', cursive;
+		text-align: center;
+		justify-content: center; 
+		font-weight:bold;
+		font-size:5rem;
+		font-weight:bold;
+		text-align: center;
+		padding:10%;
+		padding-top:75px;
+	
+	}
+	.header {
+		background-color: transparent;
+		display: flex;
+		justify-content: center; 
+		flex-direction:column;
+		text-align:center;
+		width:100%;
+	}
+}
+
+
+/* 
+Nav Bar Styling
+.nav {
+	position: relative; 
+	display: flex;
+	align-items: center;
+} */
+
+/* .navBig {
+	display: none;
+} */
+
+/* Menu Hidden by Default
+.menu {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background-color: #081b29;
+	width: 200px; 
+	border-radius: 5px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+} */
+
+/* Show Menu When Active
+.menu.active {
+	display: flex;
+} */
+
+/* Menu Links
+.menu a{
+	font-size: 1.7rem;
+	font-weight: bold;
+	color: white;
+	padding: 10px;
+	text-decoration: none;
+	display: block;
+} */
+
+/* Hover Effect */
+/* .menu a:hover {
+	background-color: #055684;
+} */
+
+/* Menu Button */
+/* .menutoggle {
+	display: block;
+	color: #ededed;
+	background-color: black;
+	border-radius: 5px;
+	padding: 10px 15px; 
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+} */
+/* 
+@media (min-width:800px) {
+	.header {
+		padding:2%;
+	}
+	.header h1{
+		font-size: 2rem;
+	}
+	.nav{
+		display:none;
+	}
+	.navBig{
+		display:flex;
+		flex-direction: row;
+		gap:30px;
+		font-size: 1.5rem;
+	}
+} */

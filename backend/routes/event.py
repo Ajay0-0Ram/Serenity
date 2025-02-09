@@ -1,26 +1,25 @@
-from fastapi import APIRouter
-from models.database import DB_PATH
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 from models.schemas import EventInput
-import sqlite3
+from models.crud import create_event
+from models.database import get_db
 
 router = APIRouter()
 
 @router.post("/log_event/")
-async def log_event(event_input: EventInput, emotion: str = None):
+async def log_event(event_input: EventInput, db: Session = Depends(get_db)):
+    # Classify event and calculate stress levels
     event_classification = classify_event_and_predict_stress(event_input.event_name)
-    emotion_based_stress_level = emotion_to_stress_level(emotion) if emotion else None
-    
-    # Save to database
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    cursor.execute("""
-        INSERT INTO events (event_name, event_date, event_type, predictive_stress_level, emotion_based_stress_level)
-        VALUES (?, ?, ?, ?, ?)
-    """, (event_input.event_name, event_input.event_date, event_classification["event_type"], event_classification["predictive_stress_level"], emotion_based_stress_level))
-    conn.commit()
-    conn.close()
-    
-    return {"message": "Event logged successfully", **event_classification, "emotion_based_stress_level": emotion_based_stress_level}
+    emotion_based_stress_level = emotion_to_stress_level(event_input.emotion)
+
+    # Save event to the database using the ORM
+    create_event(db, event_input, event_classification, emotion_based_stress_level)
+
+    return {
+        "message": "Event logged successfully",
+        **event_classification,
+        "emotion_based_stress_level": emotion_based_stress_level
+    }
 
 def classify_event_and_predict_stress(event_name: str):
     event_name = event_name.lower()
