@@ -1,1 +1,2 @@
-# habibihax
+# Serenity
+AI - Mental Health Assistant
